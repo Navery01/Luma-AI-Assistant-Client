@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class AppTheme {
 
   static RadialGradient gradient(Color outer, Color inner) => RadialGradient(
@@ -40,3 +41,5 @@ class AppTheme {
     textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.black)),
   );
 }
+
+
