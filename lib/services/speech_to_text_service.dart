@@ -27,9 +27,7 @@ class SpeechToTextService {
   Future<void> startStreaming() async {
     if (!await recorder.hasPermission()) return;
 
-    // _ws = await WebSocket.connect(wsUri.toString());
 
-    // ws.sink.add('{"type":"start","encoding":"pcm_s16le","sample_rate":48000,"channels":1}');
 
     final micStream = await recorder.startStream(recordConfig);
     _micSub = micStream.listen((chunk) {
