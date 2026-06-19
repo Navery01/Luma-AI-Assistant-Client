@@ -42,7 +42,11 @@ class SpeechToTextService {
 
     while (data.length - offset >= frameBytes) {
       final frame = Uint8List.sublistView(data, offset, offset + frameBytes);
-      ws.sink.add(frame); // binary frame
+      final frameMessage = {
+        "type": "bytes",
+        "data": frame,
+      };
+      ws.sink.add(frameMessage); // binary frame
       offset += frameBytes;
     }
 
