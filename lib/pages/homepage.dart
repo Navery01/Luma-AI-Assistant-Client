@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       duration: const Duration(seconds: 16),
     )..repeat();
 
-    const webSocketUri = String.fromEnvironment('APP_WEBSOCKET_URI');
+    const webSocketUri = String.fromEnvironment('SIDECAR_WEBSOCKET_URI');
     () async {
       final ws = WebSocketChannel.connect(Uri.parse(webSocketUri));
       await SpeechToTextService(ws: ws).startStreaming();
