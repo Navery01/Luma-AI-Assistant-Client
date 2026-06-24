@@ -116,11 +116,6 @@ class CharacterPainter extends CustomPainter {
       ),
       paint,
     );
-  canvas.drawLine(
-    size.center(Offset.fromDirection(math.pi / 1.3, size.shortestSide * 0.15)),
-    size.center(Offset.fromDirection(math.pi / -1.3, size.shortestSide * -0.15)),
-    paint,
-  );
   }
 
   @override
