@@ -3,7 +3,7 @@ import 'package:ai_assistant_client/widgets/painters.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '../widgets/themes.dart';
-import '../services/speech_to_text_service.dart';
+import '../services/audio_service.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+  AudioService? _audioService;
 
   @override
   void initState() {
@@ -24,16 +25,29 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       duration: const Duration(seconds: 16),
     )..repeat();
 
-    const webSocketUri = String.fromEnvironment('SIDECAR_WEBSOCKET_URI');
-    () async {
-      final ws = WebSocketChannel.connect(Uri.parse(webSocketUri));
-      await SpeechToTextService(ws: ws).startStreaming();
-    }();
+    const webSocketUri = String.fromEnvironment(
+      'SIDECAR_WEBSOCKET_URI',
+      defaultValue: 'ws://127.0.0.1:8001/ws/audio/',
+    );
+    _initAudio(webSocketUri);
 
+  }
+
+  Future<void> _initAudio(String webSocketUri) async {
+    try {
+      final ws = WebSocketChannel.connect(Uri.parse(webSocketUri));
+      _audioService = AudioService(ws: ws);
+      await _audioService!.startPlayback();
+      await _audioService!.startStreaming();
+    } catch (error, stackTrace) {
+      debugPrint('Audio init failed: $error');
+      debugPrintStack(stackTrace: stackTrace);
+    }
   }
 
   @override
   void dispose() {
+    _audioService?.stopStreaming();
     _controller.dispose();
     super.dispose();
   }

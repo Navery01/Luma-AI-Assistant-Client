@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   record: ^7.1.0
   web_socket_channel: ^3.0.3
+  audioplayers: ^6.8.0
+  just_audio: ^0.10.6
 
 dev_dependencies:
   flutter_test:
