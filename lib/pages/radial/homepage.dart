@@ -65,6 +65,8 @@ void _updateViewModel() {
     vm.string("currentTime")!.value = shortTime;
     vm.string("temperature")!.value = "72°";
     debugPrint(vm.properties.toString());
+    setState(() {
+      });
   }
 }
 
