@@ -12,10 +12,7 @@ class RadialHomePage extends StatefulWidget {
 }
 
 class _RadialHomePageState extends State<RadialHomePage>{
-  late final fileLoader = FileLoader.fromAsset(
-    "assets/anim/homecontrollinterface.riv",
-    riveFactory: Factory.rive,
-  );
+
   late final RiveWidgetController _riveController;
   late final ViewModelInstance vm;
   var isRiveLoaded = false;
@@ -28,7 +25,6 @@ class _RadialHomePageState extends State<RadialHomePage>{
 
   @override
   void dispose() {
-    fileLoader.dispose();
     super.dispose();
   }
   
