@@ -39,7 +39,7 @@ class _RadialHomePageState extends State<RadialHomePage>{
 
 void _loadRive() async {
   ByteData fileBytes = await rootBundle.load('assets/anim/homecontrollinterface.riv');
-  final riveFile = await File.decode(fileBytes.buffer.asUint8List(), riveFactory: Factory.flutter);
+  final riveFile = await File.decode(fileBytes.buffer.asUint8List(), riveFactory: Factory.rive);
   _riveController = RiveWidgetController(
     stateMachineSelector: StateMachineSelector.byName("State Machine 1"),
     artboardSelector: ArtboardSelector.byName("root"),
